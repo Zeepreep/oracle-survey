@@ -1,192 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survey</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<div id="start-screen" class="survey-container" style="border: none; box-shadow: none;">
-    <div class="header-box">
-        <h4>or a C.L.E.</h4>
-    </div>
-
-    <div class="outline-box" style="padding: 2rem">
-        <h3>What is the knowledge you seek?</h3>
-        <textarea id="custom-question" placeholder="Type your question here..."></textarea>
-    </div>
-
-    <div class="outline-box">
-        <button onclick="startSurvey()">The Truth →</button>
-    </div>
-</div>
-
-<div id="survey-screen" class="survey-container" style="display: none;">
-    <h2 id="question-title">Question 1</h2>
-    <div class="question-box">
-        <h3 id="question-text">What feeling does this image relate to the most?</h3>
-    </div>
-    <img id="question-image" src="assets/deer.jpg" alt="Deer Image"/>
-    
-    <div id="button-group1" class="button-group1" style="display: none;">
-        <button onclick="handleChoice1('Love')">Love</button>
-        <button onclick="handleChoice1('Anger')">Anger</button>
-        <button onclick="handleChoice1('Compassion')">Compassion</button>
-    </div>
-
-    <div id="button-group2" class="button-group2" style="display: none;">
-        <button onclick="handleChoice2('Red')">Red</button>
-        <button onclick="handleChoice2('Blue')">Blue</button>
-        <button onclick="handleChoice2('Green')">Green</button>
-    </div>
-
-    <div id="image-options" style="display: none; justify-content: space-around;">
-        <img id="image1" src="assets/cellar.png" alt="cellar" onclick="handleChoice3('Cellar')"
-             style="cursor: pointer; max-width: 45%;">
-        <img id="image2" src="assets/hotelroom.png" alt="hotel room" onclick="handleChoice3('Hotel Room')"
-             style="cursor: pointer; max-width: 45%;">
-    </div>
-
-    <div class="button-group">
-        <button onclick="prevQuestion()">Back</button>
-        <button onclick="nextQuestion()">Next</button>
-    </div>
-</div>
-
-<script>
-    const questions = [
-        {
-            title: "Question 1",
-            text: "What feeling does this image relate to the most?",
-            image: "assets/deer.jpg",
-            buttonGroup: "button-group1"
-        },
-        {
-            title: "Question 2",
-            text: "What is your favorite color?",
-            image: "assets/color.jpg",
-            buttonGroup: "button-group2"
-        },
-        {
-            title: "Question 3",
-            text: "Which image do you prefer?",
-            image1: "assets/hotelroom.png",
-            image2: "assets/cellar.png"
-        }
-    ];
-
-    let currentQuestionIndex = 0;
-
-    function startSurvey() {
-        const customQuestion = document.getElementById("custom-question").value;
-        answers[0] = customQuestion;
-        document.getElementById("start-screen").style.display = "none";
-        document.getElementById("survey-screen").style.display = "block";
-        updateQuestion();
-    }
-
-    function updateQuestion() {
-        const question = questions[currentQuestionIndex];
-        document.getElementById("question-title").innerText = question.title;
-        document.getElementById("question-text").innerText = question.text;
-
-        if (question.image) {
-            document.getElementById("question-image").src = question.image;
-            document.getElementById("question-image").style.display = "block";
-            document.getElementById("image-options").style.display = "none";
-        } else if (question.image1 && question.image2) {
-            document.getElementById("image1").src = question.image1;
-            document.getElementById("image2").src = question.image2;
-            document.getElementById("question-image").style.display = "none";
-            document.getElementById("image-options").style.display = "flex";
-        } else {
-            document.getElementById("question-image").style.display = "none";
-            document.getElementById("image-options").style.display = "none";
-        }
-
-        if (question.title === "Question 1") {
-        // Show the first button group, hide the second button group
-        document.getElementById("button-group1").style.display = "flex";
-        document.getElementById("button-group2").style.display = "none";
-    } else if (question.title === "Question 2") {
-        // Show the second button group, hide the first button group
-        document.getElementById("button-group1").style.display = "none";
-        document.getElementById("button-group2").style.display = "flex";
-    } else {
-        // For any other question, show both button groups
-        document.getElementById("button-group1").style.display = "none";
-        document.getElementById("button-group2").style.display = "none";
-    }
-    }
-
-    function nextQuestion() {
-        if (currentQuestionIndex < questions.length) {
-            currentQuestionIndex++;
-            if (currentQuestionIndex == questions.length) {
-                generateJSON();
-            } else {
-                updateQuestion();
-            }
-        }
-    }
-
-    function prevQuestion() {
-        if (currentQuestionIndex > 0) {
-            currentQuestionIndex--;
-            updateQuestion();
-        }
-    }
-
-    let answers = [];
-
-    function handleWDYSeek(answer) {
-        answers[0] = answer;
-    }
-
-    function handleChoice1(choice) {
-        //alert("You selected: " + choice);
-        answers[1] = choice;  
-    }
-
-    function handleChoice2(choice) {
-        //alert("You selected: " + choice);
-        answers[2] = choice;  
-    }
-
-    function handleChoice3(choice) {
-        //alert("You selected: " + choice);
-        answers[3] = choice;  
-    }
-
-    // Generate the JSON based on the answers
-    function generateJSON() {
-        const jsonData = {
-            question: answers[0],  // Question is stored at answers[0]
-            imageReactions: {
-                image1: answers[1],  // First image reaction is answers[1]
-                image2: answers[2],  // Second image reaction is answers[2]
-                image3: answers[3]   // Third image reaction is answers[3]
-            }
-        };
-        console.log(JSON.stringify(jsonData, null, 2));  // Print formatted JSON
-
-        // Create a Blob with the JSON data
-        const blob = new Blob([JSON.stringify(jsonData)], {type: "application/json"});
-
-        // Create a temporary anchor element for downloading
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = "survey_results.json";
-
-        // Append anchor to body and trigger click
-        document.body.appendChild(a);
-        a.click();
-
-        // Cleanup
-        document.body.removeChild(a);
-        URL.revokeObjectURL(a.href);
-    }
-</script>
-</body>
-</html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Survey</title>
+                <link rel="stylesheet" href="styles.css">
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+            </head>
+            <body>
+            <div id="start-screen" class="survey-container" style="border: none; box-shadow: none;">
+                <div class="header-box">
+                    <h4>or a C.L.E.</h4>
+                </div>
+            
+                <div class="outline-box" style="padding: 2rem">
+                    <h3>What is the knowledge you seek?</h3>
+                    <textarea id="custom-question" placeholder="Type your question here..."></textarea>
+                </div>
+            
+                <div class="outline-box">
+                    <button onclick="startSurvey()">The Truth →</button>
+                </div>
+            </div>
+            
+            <div id="survey-screen" class="survey-container" style="display: none;">
+                <h2 id="question-title">Question 1</h2>
+            </div>
+            
+            <div id="button-group" class="button-group" style="display: none;">
+                <button onclick="prevQuestion()">Back</button>
+                <button onclick="nextQuestion()">Next</button>
+            </div>
+            
+            <template id="question-template">
+                <div class="question-box">
+                    <h3 id="question-text"></h3>
+                </div>
+                <img id="question-image" src="" alt="Question Image" style="display: none;"/>
+                <div id="button-group1" class="button-group1" style="display: none;">
+                    <button onclick="handleChoice1('Option1')">Option1</button>
+                    <button onclick="handleChoice1('Option2')">Option2</button>
+                    <button onclick="handleChoice1('Option3')">Option3</button>
+                </div>
+                <div id="image-options" style="display: none; justify-content: space-around;">
+                    <img id="image1" src="" alt="Image1" onclick="handleChoice3('Image1')" style="cursor: pointer; max-width: 45%;">
+                    <img id="image2" src="" alt="Image2" onclick="handleChoice3('Image2')" style="cursor: pointer; max-width: 45%;">
+                </div>
+            </template>
+            
+            <script>
+                const questions = [
+                    {
+                        title: "Question 1",
+                        text: "What feeling does this image relate to the most?",
+                        image: "assets/deer.jpg",
+                        buttonGroup: "button-group1",
+                        answer1: "Fear",
+                        answer2: "Joy",
+                        answer3: "Sadness"
+                    },
+                    {
+                        title: "Question 2",
+                        text: "What is your favorite color?",
+                        image: "assets/color.jpg",
+                        buttonGroup: "button-group2",
+                        answer1: "Red",
+                        answer2: "Blue",
+                        answer3: "Green"
+                    },
+                    {
+                        title: "Question 3",
+                        text: "Which do you prefer?",
+                        image1: "assets/hotelroom.png",
+                        image2: "assets/cellar.png"
+                    },
+                    {
+                        title: "Question 4",
+                        text: "Which do you prefer?",
+                        image1: "assets/spaghetti.png",
+                        image2: "assets/sauce.png"
+                    }
+                ];
+            
+                // Function to shuffle the array
+                function shuffleArray(array) {
+                    for (let i = array.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [array[i], array[j]] = [array[j], array[i]];
+                    }
+                }
+            
+                // Shuffle the questions array
+                shuffleArray(questions);
+            
+                // Select the first 3 questions
+                const selectedQuestions = questions.slice(0, 3);
+            
+                let currentQuestionIndex = 0;
+            
+                function startSurvey() {
+                    const customQuestion = document.getElementById("custom-question").value;
+                    answers[0] = customQuestion;
+                    document.getElementById("start-screen").style.display = "none";
+                    document.getElementById("button-group").style.display = "flex";
+                    document.getElementById("survey-screen").style.display = "block";
+                    updateQuestion();
+                }
+            
+                function updateQuestion() {
+                    const question = selectedQuestions[currentQuestionIndex];
+                    const surveyScreen = document.getElementById("survey-screen");
+                    surveyScreen.innerHTML = ''; // Clear previous question
+            
+                    const template = document.getElementById("question-template").content.cloneNode(true);
+                    template.querySelector("#question-text").innerText = question.text;
+            
+                    if (question.image) {
+                        const questionImage = template.querySelector("#question-image");
+                        questionImage.src = question.image;
+                        questionImage.style.display = "block";
+                        template.querySelector("#button-group1").style.display = "flex";
+                        template.querySelector("#button-group1 button:nth-child(1)").innerText = question.answer1;
+                        template.querySelector("#button-group1 button:nth-child(2)").innerText = question.answer2;
+                        template.querySelector("#button-group1 button:nth-child(3)").innerText = question.answer3;
+                    } else if (question.image1 && question.image2) {
+                        const image1 = template.querySelector("#image1");
+                        const image2 = template.querySelector("#image2");
+                        image1.src = question.image1;
+                        image2.src = question.image2;
+                        template.querySelector("#image-options").style.display = "flex";
+                    } else {
+                        template.querySelector("#button-group1").style.display = "flex";
+                    }
+            
+                    surveyScreen.appendChild(template);
+                }
+            
+                function nextQuestion() {
+                    if (currentQuestionIndex < selectedQuestions.length - 1) {
+                        currentQuestionIndex++;
+                        updateQuestion();
+                    } else {
+                        generateJSON();
+                    }
+                }
+            
+                function prevQuestion() {
+                    if (currentQuestionIndex > 0) {
+                        currentQuestionIndex--;
+                        updateQuestion();
+                    }
+                }
+            
+                let answers = [];
+            
+                function handleWDYSeek(answer) {
+                    answers[0] = answer;
+                }
+            
+                function handleChoice1(choice) {
+                    answers[1] = choice;
+                }
+            
+                function handleChoice2(choice) {
+                    answers[2] = choice;
+                }
+            
+                function handleChoice3(choice) {
+                    answers[3] = choice;
+                }
+            
+                function generateJSON() {
+                    const jsonData = {
+                        question: answers[0],
+                        imageReactions: {
+                            image1: answers[1],
+                            image2: answers[2],
+                            image3: answers[3]
+                        }
+                    };
+                    console.log(JSON.stringify(jsonData, null, 2));
+            
+                    const blob = new Blob([JSON.stringify(jsonData)], {type: "application/json"});
+                    const a = document.createElement("a");
+                    a.href = URL.createObjectURL(blob);
+                    a.download = "survey_results.json";
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(a.href);
+                }
+            </script>
+            </body>
+            </html>

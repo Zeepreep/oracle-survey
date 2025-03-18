@@ -141,16 +141,32 @@ img {
     display: flex;
     gap: 0.625rem;
     justify-content: center;
+    margin-bottom: 2rem;
+    font-family: 'Inter', sans-serif;
 }
+
+.button-group button {
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+}
+
+
+
 .button-group1 {
     display: flex;
     gap: 0.8rem;
     justify-content: center;
+    border: 0.125rem solid #3AB5DD;
+    padding: 1rem;
+    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
 }
 .button-group2 {
     display: flex;
     gap: 0.8rem;
     justify-content: center;
+    border: 0.125rem solid #3AB5DD;
+    padding: 1rem;
+    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
 }
 
 button {
