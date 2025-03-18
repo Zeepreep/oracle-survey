@@ -1,99 +1,106 @@
-﻿<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --glow-amount: 5px;
-}
-
-body {
-    background-color: #001A33;
-    font-family: Arial, sans-serif;
-    color: #3AB5DD;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-.survey-container {
-    background-color: #001A33;
-    padding: 50px 30px;
-    width: 550px;
-    text-align: center;
-    border: 2px solid #3AB5DD;
-    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
-}
-
-h1 {
-    font-size: 2.8rem;
-    text-shadow: 0 0 var(--glow-amount) #3ab5dd;
-    text-align: left;
-    margin: 4px;
-}
-
-h2 {
-    font-size: 1.8rem;
-    text-shadow: 0 0 var(--glow-amount) #3AB5DD;
-    text-align: left;
-    margin-bottom: 15px;
-}
-
-h3 {
-    font-size: 1.4rem;
-    text-shadow: 0 0 var(--glow-amount) #3AB5DD;
-    text-align:  left;
-}
-
-.survey-text-box {
-    border: 2px solid #3AB5DD;
-    width: 650px;
-    padding: 10px 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
-}
-
-.question-box {
-    border: 2px solid #3AB5DD;
-    padding: 15px;
-    margin-bottom: 30px;
-    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
-}
-
-img {
-    max-width: 70%;
-    height: auto;
-    border: 2px solid #3AB5DD;
-    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
-    margin-bottom: 30px;
-}
-
-.button-group {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-button {
-    background-color: transparent;
-    color: #3AB5DD;
-    border: 2px solid #3AB5DD;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    font-weight: bold;
-    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
-    text-shadow: 0 0 var(--glow-amount) #3AB5DD;
-}
-
-button:hover {
-    background-color: #3AB5DD;
-    color: #001A33;
-    box-shadow: 0 0 20px #3AB5DD;
-}
-</style>
+﻿* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    :root {
+        --glow-amount: 0.3rem;
+    }
+    
+    body {
+        background-color: #001A33;
+        font-family: Arial, sans-serif;
+        color: #3AB5DD;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    
+    .survey-container {
+        background-color: #001A33;
+        padding: 3rem 2rem;
+        margin: 3rem;
+        width: 35%;
+        text-align: center;
+        border: 0.125rem solid #3AB5DD;
+        box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+    }
+    
+    .survey-screen {
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    h1 {
+        font-size: 2.8rem;
+        text-shadow: 0 0 var(--glow-amount) #3ab5dd;
+        text-align: left;
+        margin: 0.25rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+        text-shadow: 0 0 var(--glow-amount) #3AB5DD;
+        text-align: left;
+        margin-bottom: 1rem;
+    }
+    
+    h3 {
+        font-size: 1.4rem;
+        text-shadow: 0 0 var(--glow-amount) #3AB5DD;
+        text-align: left;
+    }
+    
+    .survey-text-box {
+        border: 0.125rem solid #3AB5DD;
+        width: 100%;
+        padding: 0.625rem 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+    }
+    
+    .question-box {
+        border: 0.125rem solid #3AB5DD;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+    }
+    
+    img {
+        display: block;
+        margin: 0 auto 2rem auto;
+        max-width: 70%;
+        height: auto;
+        border: 0.125rem solid #3AB5DD;
+        box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+    }
+    
+    .button-group {
+        display: flex;
+        gap: 0.625rem;
+        justify-content: center;
+    }
+    
+    button {
+        background-color: transparent;
+        color: #3AB5DD;
+        border: 0.125rem solid #3AB5DD;
+        padding: 0.625rem 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        font-weight: bold;
+        box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+        text-shadow: 0 0 var(--glow-amount) #3AB5DD;
+    }
+    
+    button:hover {
+        background-color: #3AB5DD;
+        color: #001A33;
+        box-shadow: 0 0 1.25rem #3AB5DD;
+    }

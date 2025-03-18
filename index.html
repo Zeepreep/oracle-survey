@@ -4,17 +4,24 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survey</title>
-    <link rel="stylesheet" href="styles.css"></head>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-<div class="survey-text-box">
-    <h1>Survey</h1>
-</div>
-<div class="survey-container">
-    <h2>Question 1</h2>
+<div id="start-screen" class="survey-container">
+    <h1>Welcome to the Survey</h1>
     <div class="question-box">
-        <h3>What feeling does this image relate to the most?</h3>
+        <h3>Enter your own question:</h3>
+        <input type="text" id="custom-question" placeholder="Type your question here...">
     </div>
-    <img src="assets/deer.jpg" alt="Deer Image"/>
+    <button onclick="startSurvey()">Start Survey</button>
+</div>
+
+<div id="survey-screen" class="survey-container" style="display: none;">
+    <h2 id="question-title">Question 1</h2>
+    <div class="question-box">
+        <h3 id="question-text">What feeling does this image relate to the most?</h3>
+    </div>
+    <img id="question-image" src="assets/deer.jpg" alt="Deer Image"/>
     <div class="question-box">
         <div class="button-group">
             <button onclick="handleChoice('Love')">Love</button>
@@ -22,9 +29,65 @@
             <button onclick="handleChoice('Compassion')">Compassion</button>
         </div>
     </div>
+    <div class="button-group">
+        <button onclick="prevQuestion()">Back</button>
+        <button onclick="nextQuestion()">Next</button>
+    </div>
 </div>
 
 <script>
+    const questions = [
+        {
+            title: "Question 1",
+            text: "What feeling does this image relate to the most?",
+            image: "assets/deer.jpg"
+        },
+        {
+            title: "Question 2",
+            text: "What is your favorite color?",
+            image: "assets/colors.jpg"
+        },
+        // Add more questions as needed
+    ];
+
+    let currentQuestionIndex = 0;
+
+    function startSurvey() {
+        const customQuestion = document.getElementById("custom-question").value;
+        if (customQuestion) {
+            questions.unshift({
+                title: "Custom Question",
+                text: customQuestion,
+                image: ""
+            });
+        }
+        document.getElementById("start-screen").style.display = "none";
+        document.getElementById("survey-screen").style.display = "block";
+        updateQuestion();
+    }
+
+    function updateQuestion() {
+        const question = questions[currentQuestionIndex];
+        document.getElementById("question-title").innerText = question.title;
+        document.getElementById("question-text").innerText = question.text;
+        document.getElementById("question-image").src = question.image;
+        document.getElementById("question-image").style.display = question.image ? "block" : "none";
+    }
+
+    function nextQuestion() {
+        if (currentQuestionIndex < questions.length - 1) {
+            currentQuestionIndex++;
+            updateQuestion();
+        }
+    }
+
+    function prevQuestion() {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            updateQuestion();
+        }
+    }
+
     function handleChoice(choice) {
         alert("You selected: " + choice);
     }
