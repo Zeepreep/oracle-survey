@@ -5,7 +5,7 @@
 }
 
 :root {
-    --glow-amount: 0.3rem;
+    --glow-amount: 0.2rem;
 }
 
 body {
@@ -73,6 +73,14 @@ input[type="text"] {
     color: #3AB5DD;
     font-size: 1rem;
     font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+input[type="text"]::placeholder {
+    color: rgba(58, 181, 221, 0.5); /* 50% opacity */
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
 }
 
 .survey-text-box {
@@ -88,6 +96,15 @@ input[type="text"] {
     padding: 1rem;
     margin-bottom: 2rem;
     box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+}
+
+.outline-box {
+    border: 0.125rem solid #3AB5DD;
+    padding: 1rem;
+    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+    width: fit-content;
+    align-items: center;
+    margin: 0 auto 2rem auto;
 }
 
 .header-box {
