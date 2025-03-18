@@ -13,8 +13,8 @@
     </div>
 
     <div class="outline-box" style="padding: 2rem">
-        <h3>What is the knowledge you seek</h3>
-        <textarea id="custom-question" placeholder="Type your question here..." oninput="adjustHeight(this)"></textarea>
+        <h3>What is the knowledge you seek?</h3>
+        <textarea id="custom-question" placeholder="Type your question here..."></textarea>
     </div>
 
     <div class="outline-box">
@@ -27,20 +27,25 @@
     <div class="question-box">
         <h3 id="question-text">What feeling does this image relate to the most?</h3>
     </div>
-
     <img id="question-image" src="assets/deer.jpg" alt="Deer Image"/>
-
-    <div id="image-options" style="display: none; justify-content: space-around;">
-        <img id="image1" src="assets/cellar.png" alt="cellar" onclick="handleChoice3('Image 1')"
-             style="cursor: pointer; max-width: 45%;">
-        <img id="image2" src="assets/hotelroom.png" alt="hotel room" onclick="handleChoice3('Image 2')"
-             style="cursor: pointer; max-width: 45%;">
-    </div>
-
-    <div class="question-box button-group">
+    
+    <div id="button-group1" class="button-group1" style="display: none;">
         <button onclick="handleChoice1('Love')">Love</button>
         <button onclick="handleChoice1('Anger')">Anger</button>
         <button onclick="handleChoice1('Compassion')">Compassion</button>
+    </div>
+
+    <div id="button-group2" class="button-group2" style="display: none;">
+        <button onclick="handleChoice2('Red')">Red</button>
+        <button onclick="handleChoice2('Blue')">Blue</button>
+        <button onclick="handleChoice2('Green')">Green</button>
+    </div>
+
+    <div id="image-options" style="display: none; justify-content: space-around;">
+        <img id="image1" src="assets/cellar.png" alt="cellar" onclick="handleChoice3('Cellar')"
+             style="cursor: pointer; max-width: 45%;">
+        <img id="image2" src="assets/hotelroom.png" alt="hotel room" onclick="handleChoice3('Hotel Room')"
+             style="cursor: pointer; max-width: 45%;">
     </div>
 
     <div class="button-group">
@@ -49,18 +54,19 @@
     </div>
 </div>
 
-
 <script>
     const questions = [
         {
             title: "Question 1",
             text: "What feeling does this image relate to the most?",
-            image: "assets/deer.jpg"
+            image: "assets/deer.jpg",
+            buttonGroup: "button-group1"
         },
         {
             title: "Question 2",
             text: "What is your favorite color?",
-            image: "assets/color.jpg"
+            image: "assets/color.jpg",
+            buttonGroup: "button-group2"
         },
         {
             title: "Question 3",
@@ -74,6 +80,7 @@
 
     function startSurvey() {
         const customQuestion = document.getElementById("custom-question").value;
+        answers[0] = customQuestion;
         document.getElementById("start-screen").style.display = "none";
         document.getElementById("survey-screen").style.display = "block";
         updateQuestion();
@@ -88,24 +95,35 @@
             document.getElementById("question-image").src = question.image;
             document.getElementById("question-image").style.display = "block";
             document.getElementById("image-options").style.display = "none";
-            document.querySelector(".button-group").style.display = "flex";
         } else if (question.image1 && question.image2) {
             document.getElementById("image1").src = question.image1;
             document.getElementById("image2").src = question.image2;
             document.getElementById("question-image").style.display = "none";
             document.getElementById("image-options").style.display = "flex";
-            document.querySelector(".button-group").style.display = "none";
         } else {
             document.getElementById("question-image").style.display = "none";
             document.getElementById("image-options").style.display = "none";
-            document.querySelector(".button-group").style.display = "flex";
         }
+
+        if (question.title === "Question 1") {
+        // Show the first button group, hide the second button group
+        document.getElementById("button-group1").style.display = "flex";
+        document.getElementById("button-group2").style.display = "none";
+    } else if (question.title === "Question 2") {
+        // Show the second button group, hide the first button group
+        document.getElementById("button-group1").style.display = "none";
+        document.getElementById("button-group2").style.display = "flex";
+    } else {
+        // For any other question, show both button groups
+        document.getElementById("button-group1").style.display = "none";
+        document.getElementById("button-group2").style.display = "none";
+    }
     }
 
     function nextQuestion() {
-        if (currentQuestionIndex < questions.length - 1) {
+        if (currentQuestionIndex < questions.length) {
             currentQuestionIndex++;
-            if (currentQuestionIndex == 3) {
+            if (currentQuestionIndex == questions.length) {
                 generateJSON();
             } else {
                 updateQuestion();
@@ -120,27 +138,25 @@
         }
     }
 
-
-    answers = []
+    let answers = [];
 
     function handleWDYSeek(answer) {
-        alert(answer);
         answers[0] = answer;
     }
 
     function handleChoice1(choice) {
-        alert("You selected: " + choice);
-        answers[1] = choice;  // Save choice for first image
+        //alert("You selected: " + choice);
+        answers[1] = choice;  
     }
 
     function handleChoice2(choice) {
-        alert("You selected: " + choice);
-        answers[2] = choice;  // Save choice for second image
+        //alert("You selected: " + choice);
+        answers[2] = choice;  
     }
 
     function handleChoice3(choice) {
-        alert("You selected: " + choice);
-        answers[3] = choice;  // Save choice for third image
+        //alert("You selected: " + choice);
+        answers[3] = choice;  
     }
 
     // Generate the JSON based on the answers
@@ -156,7 +172,7 @@
         console.log(JSON.stringify(jsonData, null, 2));  // Print formatted JSON
 
         // Create a Blob with the JSON data
-        const blob = new Blob([jsonString], {type: "application/json"});
+        const blob = new Blob([JSON.stringify(jsonData)], {type: "application/json"});
 
         // Create a temporary anchor element for downloading
         const a = document.createElement("a");

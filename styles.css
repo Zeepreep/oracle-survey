@@ -142,6 +142,16 @@ img {
     gap: 0.625rem;
     justify-content: center;
 }
+.button-group1 {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+}
+.button-group2 {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+}
 
 button {
     background-color: transparent;
