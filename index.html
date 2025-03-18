@@ -11,14 +11,14 @@
     <div class="header-box">
         <h4>or a C.L.E.</h4>
     </div>
-    
-    <div class="question-box">
-        <h3>What is the knowledge you seek?</h3>
-        <input type="text" id="custom-question" placeholder="Type your question here...">
+
+    <div class="outline-box" style="padding: 2rem">
+        <h3>What is the knowledge you seek</h3>
+        <textarea id="custom-question" placeholder="Type your question here..." oninput="adjustHeight(this)"></textarea>
     </div>
 
     <div class="outline-box">
-        <button onclick="startSurvey()">The Truth →</button>    
+        <button onclick="startSurvey()">The Truth →</button>
     </div>
 </div>
 
@@ -27,19 +27,28 @@
     <div class="question-box">
         <h3 id="question-text">What feeling does this image relate to the most?</h3>
     </div>
+
     <img id="question-image" src="assets/deer.jpg" alt="Deer Image"/>
-    <div class="question-box">
-        <div class="button-group">
-            <button onclick="handleChoice1('Love')">Love</button>
-            <button onclick="handleChoice1('Anger')">Anger</button>
-            <button onclick="handleChoice1('Compassion')">Compassion</button>
-        </div>
+
+    <div id="image-options" style="display: none; justify-content: space-around;">
+        <img id="image1" src="assets/cellar.png" alt="cellar" onclick="handleChoice3('Image 1')"
+             style="cursor: pointer; max-width: 45%;">
+        <img id="image2" src="assets/hotelroom.png" alt="hotel room" onclick="handleChoice3('Image 2')"
+             style="cursor: pointer; max-width: 45%;">
     </div>
+
+    <div class="question-box button-group">
+        <button onclick="handleChoice1('Love')">Love</button>
+        <button onclick="handleChoice1('Anger')">Anger</button>
+        <button onclick="handleChoice1('Compassion')">Compassion</button>
+    </div>
+
     <div class="button-group">
         <button onclick="prevQuestion()">Back</button>
         <button onclick="nextQuestion()">Next</button>
     </div>
 </div>
+
 
 <script>
     const questions = [
@@ -53,7 +62,12 @@
             text: "What is your favorite color?",
             image: "assets/color.jpg"
         },
-        // Add more questions as needed
+        {
+            title: "Question 3",
+            text: "Which image do you prefer?",
+            image1: "assets/hotelroom.png",
+            image2: "assets/cellar.png"
+        }
     ];
 
     let currentQuestionIndex = 0;
@@ -69,19 +83,33 @@
         const question = questions[currentQuestionIndex];
         document.getElementById("question-title").innerText = question.title;
         document.getElementById("question-text").innerText = question.text;
-        document.getElementById("question-image").src = question.image;
-        document.getElementById("question-image").style.display = question.image ? "block" : "none";
+
+        if (question.image) {
+            document.getElementById("question-image").src = question.image;
+            document.getElementById("question-image").style.display = "block";
+            document.getElementById("image-options").style.display = "none";
+            document.querySelector(".button-group").style.display = "flex";
+        } else if (question.image1 && question.image2) {
+            document.getElementById("image1").src = question.image1;
+            document.getElementById("image2").src = question.image2;
+            document.getElementById("question-image").style.display = "none";
+            document.getElementById("image-options").style.display = "flex";
+            document.querySelector(".button-group").style.display = "none";
+        } else {
+            document.getElementById("question-image").style.display = "none";
+            document.getElementById("image-options").style.display = "none";
+            document.querySelector(".button-group").style.display = "flex";
+        }
     }
 
     function nextQuestion() {
         if (currentQuestionIndex < questions.length - 1) {
             currentQuestionIndex++;
-            if(currentQuestionIndex==3){
-            generateJSON();
-        }
-        else{
-            updateQuestion();
-        }
+            if (currentQuestionIndex == 3) {
+                generateJSON();
+            } else {
+                updateQuestion();
+            }
         }
     }
 
@@ -93,11 +121,13 @@
     }
 
 
-answers=[]
-function handleWDYSeek(answer){
+    answers = []
+
+    function handleWDYSeek(answer) {
         alert(answer);
-        answers[0]=answer;
+        answers[0] = answer;
     }
+
     function handleChoice1(choice) {
         alert("You selected: " + choice);
         answers[1] = choice;  // Save choice for first image
@@ -124,9 +154,9 @@ function handleWDYSeek(answer){
             }
         };
         console.log(JSON.stringify(jsonData, null, 2));  // Print formatted JSON
-        
+
         // Create a Blob with the JSON data
-        const blob = new Blob([jsonString], { type: "application/json" });
+        const blob = new Blob([jsonString], {type: "application/json"});
 
         // Create a temporary anchor element for downloading
         const a = document.createElement("a");

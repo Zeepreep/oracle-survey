@@ -62,7 +62,7 @@ h4 {
     text-align: left;
 }
 
-input[type="text"] {
+textarea {
     border: 0.125rem solid #3AB5DD;
     width: 100%;
     padding: 0.625rem 1rem;
@@ -74,13 +74,24 @@ input[type="text"] {
     font-size: 1rem;
     font-family: Arial, sans-serif;
     font-weight: bold;
+    overflow: hidden;
+    display: block;
+    resize: none;
 }
 
-input[type="text"]::placeholder {
-    color: rgba(58, 181, 221, 0.5); /* 50% opacity */
+textarea::placeholder {
+    color: rgba(58, 181, 221, 0.5);
     font-size: 1rem;
     font-family: Arial, sans-serif;
     font-weight: bold;
+
+}
+
+textarea:focus {
+    border: 0.125rem solid #29809a;
+    box-shadow: 0 0 var(--glow-amount) #29809AFF;
+    outline: none;
+    text-shadow: 0 0 0.11rem #3ab5dd;
 }
 
 .survey-text-box {
@@ -151,7 +162,6 @@ button:hover {
     box-shadow: 0 0 1.25rem #3AB5DD;
 }
 
-/* Media Queries for Responsive Design */
 @media (max-width: 768px) {
     .survey-container {
         width: 80%;
