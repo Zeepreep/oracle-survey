@@ -13,7 +13,7 @@
     </div>
     
     <div class="question-box">
-        <h3>What is the knowledge you seek</h3>
+        <h3>What is the knowledge you seek?</h3>
         <input type="text" id="custom-question" placeholder="Type your question here...">
     </div>
     <button onclick="startSurvey()">Start Survey</button>
@@ -57,16 +57,17 @@
 
     function startSurvey() {
         const customQuestion = document.getElementById("custom-question").value;
-        if (customQuestion) {
-            questions.unshift({
-                title: "Custom Question",
-                text: customQuestion,
-                image: ""
-            });
-        }
-        document.getElementById("start-screen").style.display = "none";
-        document.getElementById("survey-screen").style.display = "block";
-        updateQuestion();
+        // if (customQuestion) {
+        //     questions.unshift({
+        //         title: "Custom Question",
+        //         text: customQuestion,
+        //         image: ""
+        //     });
+        // }
+         document.getElementById("start-screen").style.display = "none";
+         document.getElementById("survey-screen").style.display = "block";
+        //updateQuestion();
+        nextQuestion();
     }
 
     function updateQuestion() {
