@@ -100,7 +100,8 @@ function nextQuestion() {
         currentQuestionIndex++;
         updateQuestion();
     } else {
-        generateJSON();
+        let json= generateJSON();
+        alert(json);
     }
 }
 
@@ -136,14 +137,7 @@ function generateJSON() {
             image3: answers[3]
         }
     };
-    console.log(JSON.stringify(jsonData, null, 2));
 
-    const blob = new Blob([JSON.stringify(jsonData)], {type: "application/json"});
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "survey_results.json";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(a.href);
+    const jsonString = JSON.stringify(jsonData, null, 2);
+    return jsonString;
 }
