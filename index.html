@@ -13,7 +13,7 @@
     </div>
     
     <div class="question-box">
-        <h3>What is the knowledge you seek</h3>
+        <h3>What is the knowledge you seek?</h3>
         <input type="text" id="custom-question" placeholder="Type your question here...">
     </div>
 
@@ -30,9 +30,9 @@
     <img id="question-image" src="assets/deer.jpg" alt="Deer Image"/>
     <div class="question-box">
         <div class="button-group">
-            <button onclick="handleChoice('Love')">Love</button>
-            <button onclick="handleChoice('Anger')">Anger</button>
-            <button onclick="handleChoice('Compassion')">Compassion</button>
+            <button onclick="handleChoice1('Love')">Love</button>
+            <button onclick="handleChoice1('Anger')">Anger</button>
+            <button onclick="handleChoice1('Compassion')">Compassion</button>
         </div>
     </div>
     <div class="button-group">
@@ -51,7 +51,7 @@
         {
             title: "Question 2",
             text: "What is your favorite color?",
-            image: "assets/colors.jpg"
+            image: "assets/color.jpg"
         },
         // Add more questions as needed
     ];
@@ -60,17 +60,9 @@
 
     function startSurvey() {
         const customQuestion = document.getElementById("custom-question").value;
-        // if (customQuestion) {
-        //     questions.unshift({
-        //         title: "Custom Question",
-        //         text: customQuestion,
-        //         image: ""
-        //     });
-        // }
-         document.getElementById("start-screen").style.display = "none";
-         document.getElementById("survey-screen").style.display = "block";
-        //updateQuestion();
-        nextQuestion();
+        document.getElementById("start-screen").style.display = "none";
+        document.getElementById("survey-screen").style.display = "block";
+        updateQuestion();
     }
 
     function updateQuestion() {
@@ -84,7 +76,12 @@
     function nextQuestion() {
         if (currentQuestionIndex < questions.length - 1) {
             currentQuestionIndex++;
+            if(currentQuestionIndex==3){
+            generateJSON();
+        }
+        else{
             updateQuestion();
+        }
         }
     }
 
@@ -95,8 +92,54 @@
         }
     }
 
-    function handleChoice(choice) {
+
+answers=[]
+function handleWDYSeek(answer){
+        alert(answer);
+        answers[0]=answer;
+    }
+    function handleChoice1(choice) {
         alert("You selected: " + choice);
+        answers[1] = choice;  // Save choice for first image
+    }
+
+    function handleChoice2(choice) {
+        alert("You selected: " + choice);
+        answers[2] = choice;  // Save choice for second image
+    }
+
+    function handleChoice3(choice) {
+        alert("You selected: " + choice);
+        answers[3] = choice;  // Save choice for third image
+    }
+
+    // Generate the JSON based on the answers
+    function generateJSON() {
+        const jsonData = {
+            question: answers[0],  // Question is stored at answers[0]
+            imageReactions: {
+                image1: answers[1],  // First image reaction is answers[1]
+                image2: answers[2],  // Second image reaction is answers[2]
+                image3: answers[3]   // Third image reaction is answers[3]
+            }
+        };
+        console.log(JSON.stringify(jsonData, null, 2));  // Print formatted JSON
+        
+        // Create a Blob with the JSON data
+        const blob = new Blob([jsonString], { type: "application/json" });
+
+        // Create a temporary anchor element for downloading
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "survey_results.json";
+
+        // Append anchor to body and trigger click
+        document.body.appendChild(a);
+        a.click();
+
+        // Cleanup
+        document.body.removeChild(a);
+        URL.revokeObjectURL(a.href);
     }
 </script>
 </body>
