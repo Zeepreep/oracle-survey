@@ -1,106 +1,194 @@
 ﻿* {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    
-    :root {
-        --glow-amount: 0.3rem;
-    }
-    
-    body {
-        background-color: #001A33;
-        font-family: Arial, sans-serif;
-        color: #3AB5DD;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --glow-amount: 0.3rem;
+}
+
+body {
+    background-color: #001A33;
+    font-family: Arial, sans-serif;
+    color: #3AB5DD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.survey-container {
+    background-color: #001A33;
+    padding: 2.3rem 1.5rem;
+    margin: 2.3rem;
+    width: 35%;
+    text-align: center;
+    border: 0.12rem solid #3AB5DD;
+    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+}
+
+.survey-screen {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+h1 {
+    font-size: 2.8rem;
+    text-shadow: 0 0 var(--glow-amount) #3ab5dd;
+    text-align: left;
+    margin: 0.25rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    text-shadow: 0 0 var(--glow-amount) #3AB5DD;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    text-shadow: 0 0 var(--glow-amount) #3AB5DD;
+    text-align: left;
+}
+
+h4 {
+    font-size: 1.8rem;
+    text-shadow: 0 0 var(--glow-amount) #3AB5DD;
+    text-align: left;
+}
+
+input[type="text"] {
+    border: 0.125rem solid #3AB5DD;
+    width: 100%;
+    padding: 0.625rem 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+    background-color: #001A33;
+    color: #3AB5DD;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+.survey-text-box {
+    border: 0.125rem solid #3AB5DD;
+    width: 100%;
+    padding: 0.625rem 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+}
+
+.question-box {
+    border: 0.125rem solid #3AB5DD;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+}
+
+.header-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 0.125rem solid #3AB5DD;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+}
+
+img {
+    display: block;
+    margin: 0 auto 2rem auto;
+    max-width: 70%;
+    height: auto;
+    border: 0.125rem solid #3AB5DD;
+    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+}
+
+.button-group {
+    display: flex;
+    gap: 0.625rem;
+    justify-content: center;
+}
+
+button {
+    background-color: transparent;
+    color: #3AB5DD;
+    border: 0.125rem solid #3AB5DD;
+    padding: 0.625rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+    text-shadow: 0 0 var(--glow-amount) #3AB5DD;
+}
+
+button:hover {
+    background-color: #3AB5DD;
+    color: #001A33;
+    box-shadow: 0 0 1.25rem #3AB5DD;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
     .survey-container {
-        background-color: #001A33;
-        padding: 3rem 2rem;
-        margin: 3rem;
-        width: 35%;
-        text-align: center;
-        border: 0.125rem solid #3AB5DD;
-        box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+        width: 80%;
+        padding: 1.5rem 1rem;
+        margin: 1.5rem;
     }
-    
-    .survey-screen {
-        height: 80%;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-    
+
     h1 {
-        font-size: 2.8rem;
-        text-shadow: 0 0 var(--glow-amount) #3ab5dd;
-        text-align: left;
-        margin: 0.25rem;
+        font-size: 2rem;
     }
-    
+
     h2 {
-        font-size: 1.8rem;
-        text-shadow: 0 0 var(--glow-amount) #3AB5DD;
-        text-align: left;
-        margin-bottom: 1rem;
+        font-size: 1.5rem;
     }
-    
+
     h3 {
-        font-size: 1.4rem;
-        text-shadow: 0 0 var(--glow-amount) #3AB5DD;
-        text-align: left;
+        font-size: 1.2rem;
     }
-    
-    .survey-text-box {
-        border: 0.125rem solid #3AB5DD;
-        width: 100%;
-        padding: 0.625rem 1rem;
-        margin-bottom: 1rem;
-        box-shadow: 0 0 var(--glow-amount) #3AB5DD;
+
+    .survey-text-box, .question-box, button {
+        padding: 0.5rem 0.75rem;
     }
-    
-    .question-box {
-        border: 0.125rem solid #3AB5DD;
-        padding: 1rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 0 var(--glow-amount) #3AB5DD;
-    }
-    
-    img {
-        display: block;
-        margin: 0 auto 2rem auto;
-        max-width: 70%;
-        height: auto;
-        border: 0.125rem solid #3AB5DD;
-        box-shadow: 0 0 var(--glow-amount) #3AB5DD;
-    }
-    
+
     .button-group {
-        display: flex;
-        gap: 0.625rem;
-        justify-content: center;
+        flex-direction: column;
+        gap: 0.5rem;
     }
-    
-    button {
-        background-color: transparent;
-        color: #3AB5DD;
-        border: 0.125rem solid #3AB5DD;
-        padding: 0.625rem 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
+}
+
+@media (max-width: 480px) {
+    .survey-container {
+        width: 90%;
+        padding: 1rem 0.5rem;
+        margin: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    h3 {
         font-size: 1rem;
-        font-weight: bold;
-        box-shadow: 0 0 var(--glow-amount) #3AB5DD;
-        text-shadow: 0 0 var(--glow-amount) #3AB5DD;
     }
-    
-    button:hover {
-        background-color: #3AB5DD;
-        color: #001A33;
-        box-shadow: 0 0 1.25rem #3AB5DD;
+
+    .survey-text-box, .question-box, button {
+        padding: 0.4rem 0.5rem;
     }
+
+    .button-group {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+}
