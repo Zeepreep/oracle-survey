@@ -52,6 +52,9 @@ const selectedQuestions = questions.slice(0, 3);
 let currentQuestionIndex = 0;
 let answers = [];
 
+// Generate a unique session ID when the page loads
+const sessionId = Date.now().toString();
+
 function startSurvey() {
     const customQuestion = document.getElementById("custom-question").value;
     answers[0] = customQuestion;
@@ -72,6 +75,7 @@ function updateQuestion() {
     if (question.image) {
         const questionImage = template.querySelector("#question-image");
         questionImage.src = question.image;
+        questionImage.alt = "";
         questionImage.style.display = "block";
         template.querySelector("#button-group1").style.display = "flex";
         template.querySelector("#button-group1 button:nth-child(1)").innerText = question.answer1;
@@ -85,6 +89,8 @@ function updateQuestion() {
         const image2 = template.querySelector("#image2");
         image1.src = question.image1;
         image2.src = question.image2;
+        image1.alt = "";
+        image2.alt = "";
         image1.setAttribute("onclick", `handleChoice3('${question.answer1}')`);
         image2.setAttribute("onclick", `handleChoice3('${question.answer2}')`);
         template.querySelector("#image-options").style.display = "flex";
@@ -100,8 +106,25 @@ function nextQuestion() {
         currentQuestionIndex++;
         updateQuestion();
     } else {
-        let json = generateJSON();
-        window.location.href = "lastpage.html"; 
+        // Show loading screen
+        document.getElementById("survey-screen").style.display = "none";
+        document.getElementById("button-group").style.display = "none";
+        document.getElementById("loading-screen").style.display = "block";
+        
+        // Make the API call
+        fetchOracleResponse()
+            .then((response) => {
+                // Navigate to the results page after getting the response
+                window.location.href = "lastpage.html";
+            })
+            .catch(error => {
+                console.error("Error fetching oracle response:", error);
+                // Set fallback message
+                const fallbackMessage = "The oracle is silent at this moment. Please try again later.";
+                sessionStorage.setItem('aiAnswerValue', fallbackMessage);
+                // Navigate to the results page even on error
+                window.location.href = "lastpage.html";
+            });
     }
 }
 
@@ -165,6 +188,40 @@ function generateJSON() {
     return jsonString;
 }
 
+// Function to fetch the oracle response from the API
+async function fetchOracleResponse() {
+    const jsonData = {
+        question: answers[0],
+        imageReactions: {
+            image1: answers[1],
+            image2: answers[2],
+            image3: answers[3]
+        }
+    };
 
-////// Input from API
-let aiAnswerValue="asdasd";
+    try {
+        const response = await fetch('https://expobackend-10z5.onrender.com/api/oracle', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        });
+
+        if (!response.ok) {
+            throw new Error(`API responded with status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        aiAnswerValue = data.oracle.response;
+        // Store in sessionStorage immediately after receiving
+        sessionStorage.setItem('aiAnswerValue', data.oracle.response);
+        return data.oracle.response;
+    } catch (error) {
+        console.error("Error:", error);
+        throw error;
+    }
+}
+
+// Initialize aiAnswerValue with a default message or from sessionStorage if available
+let aiAnswerValue = sessionStorage.getItem('aiAnswerValue') || "The oracle is contemplating your question...";
