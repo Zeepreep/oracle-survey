@@ -1,83 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Last Page</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        .oracle-response-container {
-            width: 18rem;
-            height: 15rem;
-            margin-right: 1rem;
-            overflow-y: auto;
-            padding-right: 5px; /* Add some padding for the scrollbar */
-        }
-        
-        /* Styling for the loading animation */
-        .loader {
-            margin: 30px auto;
-            border: 5px solid rgba(58, 181, 221, 0.3);
-            border-radius: 50%;
-            border-top: 5px solid #3AB5DD;
-            width: 50px;
-            height: 50px;
-            animation: spin 2s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .oracle-text {
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-</head>
-<body>
-<div class="survey-container" style="width: 38rem;">
-    <h4 style="margin: 0rem 0rem 1rem 1.5rem;">Results</h4>
-    <div class="outline-box" style="padding: 1rem">
-        <h3>Are you going where you thought you were?</h3>
-    </div>
-
-    <div style="display: flex; align-items: center;">
-        <div class="oracle-response-container">
-            <h3 id="oracle-response" class="oracle-text">The oracle is contemplating your question...</h3>
-            <div id="loading-animation" class="loader" style="display: none;"></div>
-        </div>
-        <img src="assets/oracle.jpg" alt="Oracle Image" id="oracleImg"
-             style="max-width: fit-content; margin-left: 1.2rem;">
-    </div>
-
-
-    <!-- Add the Restart Test button here -->
-    <div style="text-align: center; margin-top: 2rem;">
-        <button onclick="restartTest()">
-            Restart Test
-        </button>
-    </div>
-</div>
-
-<script>
-    // Get the oracle response from sessionStorage
-    document.addEventListener('DOMContentLoaded', function() {
-        const oracleResponse = sessionStorage.getItem('aiAnswerValue');
-        if (oracleResponse) {
-            document.getElementById('oracle-response').textContent = oracleResponse;
-        }
-    });
-
-    function restartTest() {
-        // Clear sessionStorage when restarting
-        sessionStorage.clear();
-        window.location.href = 'index.html';
-    }
-</script>
-</body>
-</html>
-
-
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            <title>Last Page</title>
+                            <link rel="stylesheet" href="styles.css">
+                            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+                            <style>
+                                html, body {
+                                    max-width: 100%;
+                                    overflow-x: hidden;
+                                }
+                        
+                                .oracle-response-container {
+                                    width: 18rem;
+                                    height: 15rem;
+                                    margin-right: 1rem;
+                                    overflow-y: auto;
+                                    padding-right: 5px; /* Add some padding for the scrollbar */
+                                }
+                        
+                                /* Styling for the loading animation */
+                                .loader {
+                                    margin: 30px auto;
+                                    border: 5px solid rgba(58, 181, 221, 0.3);
+                                    border-radius: 50%;
+                                    border-top: 5px solid #3AB5DD;
+                                    width: 50px;
+                                    height: 50px;
+                                    animation: spin 2s linear infinite;
+                                }
+                        
+                                @keyframes spin {
+                                    0% { transform: rotate(0deg); }
+                                    100% { transform: rotate(360deg); }
+                                }
+                        
+                                .oracle-text {
+                                    margin: 0;
+                                    padding: 0;
+                                }
+                        
+                                @media (max-width: 768px) {
+                                    .survey-container {
+                                        width: 90%;
+                                        padding: 1.5rem 2rem;
+                                        margin: 1rem;
+                                    }
+                        
+                                    .oracle-response-container {
+                                        width: 100%;
+                                        margin: 0.5rem;
+                                    }
+                        
+                                    .oracle-response-container, #oracleImg {
+                                        display: block;
+                                        margin: 0 auto;
+                                        text-align: center;
+                                    }
+                        
+                                    #oracleImg {
+                                        margin-top: 1rem;
+                                        max-width: 100%;
+                                    }
+                        
+                                    .button-group {
+                                        flex-direction: row;
+                                        gap: 0.5rem;
+                                        justify-content: center;
+                                    }
+                                }
+                        
+                                @media (max-width: 480px) {
+                                    .survey-container {
+                                        width: 90%;
+                                        padding: 1rem 0.5rem;
+                                        margin: 0.5rem;
+                                    }
+                        
+                                    .oracle-response-container {
+                                        width: 100%;
+                                        padding: 0.5rem;
+                                        margin: 0;
+                                    }
+                        
+                                    .button-group {
+                                        flex-direction: row;
+                                        gap: 0.4rem;
+                                        justify-content: center;
+                                    }
+                                }
+                            </style>
+                        </head>
+                        <body>
+                        <div class="survey-container" style="width: 100%; max-width: 38rem; margin: 0 auto;">
+                            <h4 style="margin: 0rem 0rem 1rem 1.5rem;">Results</h4>
+                            <div class="outline-box" style="padding: 1rem">
+                                <h3>Are you going where you thought you were?</h3>
+                            </div>
+                        
+                            <div style="display: flex; align-items: center;">
+                                <div class="oracle-response-container">
+                                    <h3 id="oracle-response" class="oracle-text">The oracle is contemplating your question...</h3>
+                                    <div id="loading-animation" class="loader" style="display: none;"></div>
+                                </div>
+                                <img src="assets/oracle.jpg" alt="Oracle Image" id="oracleImg"
+                                     style="max-width: fit-content; margin-left: 1.2rem;">
+                            </div>
+                        
+                            <!-- Add the Restart Test button here -->
+                            <div style="text-align: center; margin-top: 2rem;">
+                                <button onclick="restartTest()">
+                                    Restart Test
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <script>
+                            // Get the oracle response from sessionStorage
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const oracleResponse = sessionStorage.getItem('aiAnswerValue');
+                                if (oracleResponse) {
+                                    document.getElementById('oracle-response').textContent = oracleResponse;
+                                }
+                            });
+                        
+                            function restartTest() {
+                                // Clear sessionStorage when restarting
+                                sessionStorage.clear();
+                                window.location.href = 'index.html';
+                            }
+                        </script>
+                        </body>
+                        </html>

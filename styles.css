@@ -290,6 +290,12 @@ img.selected {
         padding: 1rem 0.5rem;
         margin: 1rem;
     }
+    
+    .oracle-response-container {
+        width: 90%;
+        padding: 0.5rem;
+        margin: 1rem;
+    }
 
     h1 {
         font-size: 1.5rem;
