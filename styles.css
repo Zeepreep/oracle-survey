@@ -8,15 +8,28 @@
     --glow-amount: 0.2rem;
 }
 
+@font-face {
+    font-family: 'Forma';
+    src: url('assets/forma.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     background-color: #001A33;
-    font-family: Arial, sans-serif;
+    font-family: 'Forma', sans-serif;
     color: #3AB5DD;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
+    letter-spacing: 0.07em; /* Adjust the value as needed */
+}
+
+h1, h2, h3, h4, textarea, button, .survey-text-box, .question-box, .outline-box, .header-box, .oracle-text {
+    font-family: inherit;
+    letter-spacing: inherit;
 }
 
 .survey-container {
@@ -145,11 +158,6 @@ img {
     font-family: 'Inter', sans-serif;
 }
 
-.button-group button {
-    font-family: "Inter", sans-serif;
-    font-weight: bold;
-}
-
 .button-group1 {
     display: flex;
     gap: 0.8rem;
@@ -190,6 +198,13 @@ button.selected {
     background-color: #3AB5DD;
     color: #001A33;
     box-shadow: 0 0 4rem #98e6ff;
+}
+
+img.selectable:hover {
+    background-color: #3AB5DD;
+    color: #001A33;
+    box-shadow: 0 0 4rem #98e6ff;
+    border: 0.125rem solid #98e6ff;
 }
 
 img.selected {
