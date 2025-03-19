@@ -24,7 +24,7 @@ body {
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    letter-spacing: 0.07em; /* Adjust the value as needed */
+    letter-spacing: 0.08em; /* Adjust the value as needed */
 }
 
 h1, h2, h3, h4, textarea, button, .survey-text-box, .question-box, .outline-box, .header-box, .oracle-text {
@@ -256,6 +256,10 @@ img.selected {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --glow-amount: 0.1rem;
+    }
+    
     .survey-container {
         width: 80%;
         padding: 1.5rem 1rem;
@@ -285,6 +289,10 @@ img.selected {
 }
 
 @media (max-width: 480px) {
+    :root {
+        --glow-amount: 0.1rem;
+    }
+    
     .survey-container {
         width: 90%;
         padding: 1rem 0.5rem;
