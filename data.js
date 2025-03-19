@@ -3,7 +3,6 @@ const questions = [
         title: "Question 1",
         text: "What feeling does this image relate to the most?",
         image: "assets/deer.jpg",
-        buttonGroup: "button-group1",
         answer1: "Fear",
         answer2: "Joy",
         answer3: "Sadness"
@@ -12,7 +11,6 @@ const questions = [
         title: "Question 2",
         text: "What is your favorite color?",
         image: "assets/color.jpg",
-        buttonGroup: "button-group2",
         answer1: "Red",
         answer2: "Blue",
         answer3: "Green"
@@ -32,7 +30,102 @@ const questions = [
         answer1: "Spaghetti",
         image2: "assets/sauce.png",
         answer2: "Sauce"
-    }
+    },
+    {
+        title: "Question 5",
+        text: "Which do you prefer?",
+        image1: "assets/flowers.png",
+        answer1: "Flowers",
+        image2: "assets/fruit.png",
+        answer2: "Fruit"
+    },
+    {
+        title: "Question 6",
+        text: "Which image exudes happiness more?",
+        image1: "assets/elephant.png",
+        answer1: "Elephant",
+        image2: "assets/lawnchair.png",
+        answer2: "Lawnchair"
+    },
+    {
+        title: "Question 7",
+        text: "Which image exudes sadness more?",
+        image1: "assets/apartmentbuilding.png",
+        answer1: "Apartment Building",
+        image2: "assets/castle.png",
+    },
+    {
+        title: "Question 8",
+        text: "Which image exudes fear more?",
+        image1: "assets/preschool.png",
+        answer1: "Preschool",
+        image2: "assets/chicken.png",
+        answer2: "Chicken"
+    },
+    {
+        title: "Question 9",
+        text: "Which image exudes anger more?",
+        image1: "assets/mango.png",
+        answer1: "Mango",
+        image2: "assets/mountain.png",
+        answer2: "Mountain"
+    },
+    {
+        title: "Question 10",
+        text: "Which image exudes surprise more?",
+        image1: "assets/construction.png",
+        answer1: "Construction",
+        image2: "assets/butterflies.png",
+        answer2: "Butterflies"
+    },
+    {
+        title: "Question 11",
+        text: "Which adjective would make this the most fun?",
+        image: "assets/hedgehog.jpg",
+        answer1: "Giant",
+        answer2: "Fast",
+        answer3: "Blue"
+    },
+    {
+        title: "Question 12",
+        text: "What feeling does this image relate to the most?",
+        image: "assets/birthday.jpg",
+        answer1: "Dread",
+        answer2: "Excitement",
+        answer3: "Existential Crisis"
+    },
+    {
+        title: "Question 13",
+        text: "How would you describe this?",
+        image: "assets/dragon.jpg",
+        answer1: "Fake",
+        answer2: "Cute",
+        answer3: "Scary"
+    },
+    {
+        title: "Question 14",
+        text: "What is your opinion on bananas?",
+        image: "assets/banana.jpg",
+        answer1: "Love",
+        answer2: "Hate",
+        answer3: "Indifferent"
+    },
+    {
+        title: "Question 15",
+        text: "What feeling does this image relate to the most?",
+        image: "assets/snowangel.jpg",
+        answer1: "Exhaustion",
+        answer2: "Happiness",
+        answer3: "Uncomfortable"
+    },
+    {
+        title: "Question 16",
+        text: "Do you like Christmas?",
+        image: "assets/christmas.jpg",
+        answer1: "Yes",
+        answer2: "No",
+        answer3: "Maybe"
+    },
 ];
 
 // Function to shuffle the array

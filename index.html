@@ -19,17 +19,21 @@
             animation: spin 2s linear infinite;
             display: none;
         }
-        
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
 <body>
 <div id="start-screen" class="survey-container" style="border: none; box-shadow: none;">
     <div class="header-box">
-        <h4 style="text-align: center;">or a C.L.E.</h4>
+        <h4>or a C.L.E.</h4>
     </div>
 
     <div class="outline-box" style="padding: 2rem">
@@ -58,16 +62,19 @@
 </div>
 
 <template id="question-template">
-    <h2 id="question-title"></h2>
-    <p id="question-text"></p>
-    <img id="question-image" style="display: none; max-width: 100%; margin: 1rem 0;" alt="">
-    
+
+    <div class="question-box">
+        <h3 id="question-text"></h3>
+    </div>
+
+    <img id="question-image" style="display: none;" alt="">
+
     <div id="button-group1" class="options-group" style="display: none;">
         <button onclick="handleChoice1('')"></button>
         <button onclick="handleChoice1('')"></button>
         <button onclick="handleChoice1('')"></button>
     </div>
-    
+
     <div id="image-options" style="display: none; justify-content: space-between; margin-top: 1rem;">
         <img id="image1" src="" alt="" style="width: 48%; cursor: pointer;" onclick="handleChoice3('')">
         <img id="image2" src="" alt="" style="width: 48%; cursor: pointer;" onclick="handleChoice3('')">
