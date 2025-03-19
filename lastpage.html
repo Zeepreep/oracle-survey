@@ -9,29 +9,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="survey-container" style="border: none; box-shadow: none;">
-        <div class="header-box">
-            <h4>Survey</h4>
-        </div>
-        
-
-        <h4 style="margin-bottom: 20px;">Results</h4>
-        <div class="outline-box" style="padding: 2rem">
-            <h4>Are you going where you thought you were?</h4>
-        </div>
-    
-        <div class="outline-box">
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-                <h3>
-                    <script src="data.js"></script>
-                    <script>
-                        document.write(aiAnswerValue);
-                    </script>
-                </h3>
-                <img src="assets/oracle.jpg" alt="Oracle Image" id="oracleImg" style="max-width: 150px; margin-left: 20px;">
-            </div>
-        </div>
+<div class="survey-container" style="width: 38rem; margin: 0 0 -1rem 0">
+    <h4 style="margin: 0rem 0rem 1rem 1.5rem;">Results</h4>
+    <div class="outline-box" style="padding: 1rem">
+        <h3>Are you going where you thought you were?</h3>
     </div>
+
+    <div style="display: flex; align-items: center;">
+        <div class="outline-box" style="width: 18rem; height: 15rem; margin-right: 1rem;">
+            <h3>
+                <script src="data.js"></script>
+                <script>
+                    document.write(aiAnswerValue);
+                </script>
+            </h3>
+        </div>
+        <img src="assets/oracle.jpg" alt="Oracle Image" id="oracleImg"
+             style="max-width: fit-content; margin-left: 1.2rem;">
+    </div>
+
+
+    <!-- Add the Restart Test button here -->
+    <div style="text-align: center; margin-top: 2rem;">
+        <button onclick="restartTest()">
+            Restart Test
+        </button>
+    </div>
+</div>
+
+<script>
+    function restartTest() {
+        window.location.href = 'index.html'; // Change 'index.html' to the starting page of your test
+    }
+</script>
 </body>
 </html>
 
