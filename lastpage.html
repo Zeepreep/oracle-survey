@@ -4,10 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Last Page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="data.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Welcome to the Last Page</h1>
-    <p>This is the final step of the survey. Thank you for participating!</p>
+    <div class="survey-container" style="border: none; box-shadow: none;">
+        <div class="header-box">
+            <h4>Survey</h4>
+        </div>
+        
+
+        <h4 style="margin-bottom: 20px;">Results</h4>
+        <div class="outline-box" style="padding: 2rem">
+            <h4>Are you going where you thought you were?</h4>
+        </div>
+    
+        <div class="outline-box">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h3>
+                    <script src="data.js"></script>
+                    <script>
+                        document.write(aiAnswerValue);
+                    </script>
+                </h3>
+                <img src="assets/oracle.jpg" alt="Oracle Image" id="oracleImg" style="max-width: 150px; margin-left: 20px;">
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+
+

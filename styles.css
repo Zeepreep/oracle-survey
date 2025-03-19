@@ -199,6 +199,21 @@ img.selected {
     border: 0.125rem solid #98e6ff;
 }
 
+
+#aiAnswerValue {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+#oracleImg {
+    width: 150px; /* Adjust the size as needed */
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px; /* Add some spacing between the text and the image */
+}
+
 @media (max-width: 768px) {
     .survey-container {
         width: 80%;
