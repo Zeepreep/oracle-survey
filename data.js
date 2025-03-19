@@ -115,17 +115,40 @@ function prevQuestion() {
 function handleWDYSeek(answer) {
     answers[0] = answer;
 }
-
 function handleChoice1(choice) {
     answers[currentQuestionIndex + 1] = choice;
+    highlightSelectedOption(choice);
 }
 
 function handleChoice2(choice) {
     answers[currentQuestionIndex + 1] = choice;
+    highlightSelectedOption(choice);
 }
 
 function handleChoice3(choice) {
     answers[currentQuestionIndex + 1] = choice;
+    highlightSelectedOption(choice);
+}
+
+function highlightSelectedOption(choice) {
+    const buttons = document.querySelectorAll(`#button-group1 button`);
+    const images = document.querySelectorAll(`#image-options img`);
+    
+    buttons.forEach(button => {
+        if (button.innerText === choice) {
+            button.classList.add('selected');
+        } else {
+            button.classList.remove('selected');
+        }
+    });
+
+    images.forEach(image => {
+        if (image.src.includes(choice.toLowerCase().replace(' ', ''))) {
+            image.classList.add('selected');
+        } else {
+            image.classList.remove('selected');
+        }
+    });
 }
 
 function generateJSON() {

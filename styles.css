@@ -150,8 +150,6 @@ img {
     font-weight: bold;
 }
 
-
-
 .button-group1 {
     display: flex;
     gap: 0.8rem;
@@ -186,6 +184,19 @@ button:hover {
     background-color: #3AB5DD;
     color: #001A33;
     box-shadow: 0 0 1.25rem #3AB5DD;
+}
+
+button.selected {
+    background-color: #3AB5DD;
+    color: #001A33;
+    box-shadow: 0 0 4rem #98e6ff;
+}
+
+img.selected {
+    background-color: #3AB5DD;
+    color: #001A33;
+    box-shadow: 0 0 4rem #98e6ff;
+    border: 0.125rem solid #98e6ff;
 }
 
 @media (max-width: 768px) {
