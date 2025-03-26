@@ -80,5 +80,22 @@
         <img id="image2" class="selectable" src="" alt="" style="width: 48%; cursor: pointer;" onclick="handleChoice3('')">
     </div>
 </template>
+
+<script>
+    function startSurvey() {
+        // Get the user's question
+        const userQuestion = document.getElementById('custom-question').value.trim();
+        
+        // Store the question in sessionStorage
+        sessionStorage.setItem('originalQuestion', userQuestion);
+        
+        // Hide start screen and show the survey
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('survey-screen').style.display = 'block';
+        
+        // Start the survey questions
+        loadQuestion(0);
+    }
+</script>
 </body>
 </html>

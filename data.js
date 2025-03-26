@@ -151,6 +151,10 @@ const sessionId = Date.now().toString();
 function startSurvey() {
     const customQuestion = document.getElementById("custom-question").value;
     answers[0] = customQuestion;
+    
+    // Store the question in sessionStorage so it's available on the results page
+    sessionStorage.setItem('originalQuestion', customQuestion);
+    
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("button-group").style.display = "flex";
     document.getElementById("survey-screen").style.display = "block";
